@@ -17,6 +17,12 @@ module.exports = (req, res, next) => {
   } catch (error) {
     throw new Unauthorized({ message: 'Необходима авторизация' });
   }
+  
+  if(req.method === 'OPTIONS') {
+        return res.status(200).json(({
+            body: "OK"
+        }))
+    }
 
   req.user = payload;
   next();
